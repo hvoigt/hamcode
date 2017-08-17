@@ -1,0 +1,92 @@
+AA
+AB
+ABT
+ADX
+AGN
+ANT
++     # AR Prosign
+*     # AS Prosign
+BCNU
+BK
+BN
+BTR
+
+BTW
+BUG
+BURO
+B4
+C
+CFM
+CK
+CKT
+CL
+CNT
+CONDX
+CPI
+CQ CQ CQ
+CU
+CUAGN
+CUD
+CUL
+CUZ
+CW
+DE
+ES
+GG
+KHZ
+K
+(     # KN Prosign
+MHZ
+OT
+OM
+PSE
+R
+RTTY
+%     # SK Prosign
+~     # SN Prosign
+TNX
+TT
+TU
+U
+VY
+WX
+NAME
+K
+?     # IMI Prosign
+599
+488
+355
+122
+563
+802
+558
+234
+543
+521
+559
+
+QRG(?) -- My exact frequency is ______. What is your exact frequency?
+QRG 7.000 MHz
+QRG?
+
+QRL(?) -- Frequency is busy.
+QRL? DE DHEIKO K
+QRM(?) -- Interference from another station
+QRN(?) -- Interference from static
+QRO(?) -- Increase power
+QRP(?) -- Decrease power
+QRQ(?) -- Send faster
+QRS(?) -- Send slower
+QRT(?) -- Stop sending
+QRU(?) -- All done - nothing more
+QRV(?) -- I am ready
+QRX(?) -- Please Wait a minute or more
+QRZ(?) -- Who is calling me
+QSK(?) -- I can hear you while I am sending
+QSL(?) -- I acknowledge receipt
+QSX(?) -- I am listening on ...
+QSY(?) 7.023 -- Change frequency to ...
+QTH Hamburg
+QTH Cuxhaven
+QTH Bremerhaven
+QTH?
