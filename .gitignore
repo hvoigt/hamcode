@@ -2,3 +2,5 @@ cwwords_*.txt
 cwwords_*.mp3
 /lettermix
 *.swp
+*_*.txt
+*_*.mp3
