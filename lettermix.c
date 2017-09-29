@@ -4,8 +4,9 @@
 
 const int text_len = 80;
 const int max_word_len = 7;
-const char *allowed_characters = " kmuresnaptlwi,jz=foy,vg5/q";
-//const char *allowed_characters = " kmuresnaptlwi,jz=foy,vg5/q92h38b?47c1d60x";
+const char *allowed_characters = " kmuresnaptlwi.jz=foy,vg5/q";
+//const char *allowed_characters = " kmuresnaptlwi.jz=foy,vg5/q92h38b?47c1d60x+#";
+// + -> ^AR, # -> ^KA
 
 int main(int argc, char *argv[])
 {

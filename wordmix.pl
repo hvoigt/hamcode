@@ -14,8 +14,9 @@ use strict;
 use warnings;
 
 my $wordcount = 10;
-my $allowed_characters = "kmuresnaptlwi,jz=foy,v";
-#my $allowed_characters = "kmuresnaptlwi,jz=foy,vg5/q92h38b?47c1d60x";
+my $allowed_characters = "kmuresnaptlwi.jz=foy,vg5/q";
+#my $allowed_characters = "kmuresnaptlwi.jz=foy,vg5/q92h38b?47c1d60x+#";
+# + -> ^AR, # -> ^KA
 my $wordmaxlength = 7;
 my @words = ();
 
