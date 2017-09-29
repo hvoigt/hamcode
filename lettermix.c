@@ -5,12 +5,16 @@
 
 const int text_len = 80;
 const int max_word_len = 7;
-const char *allowed_characters = " kmuresnaptlwi.jz=foy,vg5/q";
-//const char *allowed_characters = " kmuresnaptlwi.jz=foy,vg5/q92h38b?47c1d60x+#";
-// + -> ^AR, # -> ^KA
 
 int main(int argc, char *argv[])
 {
+    char *allowed_characters;
+    if (argc != 2) {
+	fprintf(stderr, "Usage: %s <characters>", argv[0]);
+	exit(1);
+    }
+    asprintf(&allowed_characters, " %s", argv[1]);
+
     srand(time(NULL));
     int word_len = 0;
     int n = strlen(allowed_characters);

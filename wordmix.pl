@@ -13,10 +13,11 @@
 use strict;
 use warnings;
 
+my $num_args = $#ARGV + 1;
+die "Usage: $0 <characters>" if ($num_args != 1);
+
 my $wordcount = 10;
-my $allowed_characters = "kmuresnaptlwi.jz=foy,vg5/q";
-#my $allowed_characters = "kmuresnaptlwi.jz=foy,vg5/q92h38b?47c1d60x+#";
-# + -> ^AR, # -> ^KA
+my $allowed_characters = $ARGV[0];
 my $wordmaxlength = 7;
 my @words = ();
 my @unfiltered = ();
@@ -26,7 +27,7 @@ sub uniq {
     grep !$seen{$_}++, @_;
 }
 
-while (<>) {
+while (<STDIN>) {
     my @split_words = split (/\s+/, $_);
     foreach my $word (@split_words) {
         next if (not $word =~ /^[$allowed_characters]+$/);
