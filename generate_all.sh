@@ -20,4 +20,5 @@ outdir="$2"
  ./gencw_texts.sh "$characters"
 ) &&
 mkdir -p $outdir &&
-mv $my_path/*_*.txt $my_path/*_*.mp3 $outdir/
+mv $my_path/*_*.txt $my_path/*_*.mp3 $outdir/ &&
+echo "$characters" >$outdir/0_Letters.txt
