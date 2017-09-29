@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 const int text_len = 80;
 const int max_word_len = 7;
@@ -10,7 +11,7 @@ const char *allowed_characters = " kmuresnaptlwi.jz=foy,vg5/q";
 
 int main(int argc, char *argv[])
 {
-    sranddev();
+    srand(time(NULL));
     int word_len = 0;
     int n = strlen(allowed_characters);
     for (int i = 0; i < text_len; i++) {
