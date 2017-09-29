@@ -19,14 +19,23 @@ my $allowed_characters = "kmuresnaptlwi.jz=foy,vg5/q";
 # + -> ^AR, # -> ^KA
 my $wordmaxlength = 7;
 my @words = ();
+my @unfiltered = ();
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
 
 while (<>) {
-    next if not /^[$allowed_characters]+$/;
-    next if length > $wordmaxlength;
-
-    s/\s+$//;
-    push @words, $_;
+    my @split_words = split (/\s+/, $_);
+    foreach my $word (@split_words) {
+        next if (not $word =~ /^[$allowed_characters]+$/);
+        next if length $word > $wordmaxlength;
+        push @unfiltered, $word;
+    }
 }
+
+@words = uniq(@unfiltered);
 
 foreach my $i (0 .. $#words) {
     my $range = $#words - $i + 1;
