@@ -1,0 +1,3 @@
+[submodule "ebook2cw"]
+	path = ebook2cw
+	url = ../ebook2cw.git
