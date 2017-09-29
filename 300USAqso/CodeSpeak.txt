@@ -1,0 +1,57 @@
+Hi, this comes from WX6RST for your Morse Code pleasure...
+
+
+In order to use the files in this zip file with your downloaded G4FON (Koch method of learning Morse Code) you must rename them.  Here's the deal.
+
+G4FON forces you to learn all 40 Morse Code characters (26 letters a-z, 10 numerals 0-9, period, comma, question mark, and slash (/) before you can start copying actual messages.  Once you've got the characters down, then you can press the "sample qso" button at the bottom of the program page.  You can also play a standard text file by means of the "text file" button.  Neither of these buttons appear until all 40 characters have been learned.
+
+The QSO.txt file shipped with the program is NOT in the current format used on the USA ham tests.  The three .txt files in this zip file (300QSO-ver1, ver2, and ver3) are in the USA format.  Each of the files contains 300 different sample amateur radio contacts. In morse code, the term QSO means "can you copy", and is a shorthand way of saying "amateur radio contact".  Thus, I can say that, "I had a QSO with KB9MII last night" and hams know that what I'm saying is that I had a radio contact with KB9MII last night.
+
+At any rate, you can rename the file that came with the program QSOold.txt or something like that, and then rename any one of the three .txt files in this zip file QSO.txt and put it in the folder where the program resides.
+
+Now, here is how you decode a typical amateur QSO and some things to look out for:
+
+vvv vvv n6qwx de nj7yv/4 ^bt good copy alice.  rig is yaesu zk196 and runs 775 watts to a yagi antenna up 42 feet.  Weather is rainy and cold and my name is catherine.  i live in charleston, south carolina where your rst is 565.  My age is 55 and I am a sales manager.  how copy?  n6qwx de nj7yv/4 ^sk
+
+
+vvv vvv		Used only for test purposes to get a feel for the tone and rythm of the code machine.
+
+n6qwx de nj7yv/4	The receiving station is n6qwx.  The de means "from".  The transmitting station is nj7yv/4.  The slash 4 means that the station is not at his home station, but is in a different call sign area.  In this case, a "7" station (Washington, Oregon, Nevada, and 5 other "western" states) is somewhere in the southern United States in the "4" district (Alabama, Florida, Georgia, and 5 other southern states)
+
+ ^bt	bt (dahditditditdah) is one of the "prosigns" you need to know.  It means "break", or a break between the station identification and the rest of the message.  You should write it "/" (slash).  The other two prosigns are ar (ditdahditdahdit) which means "I'm through, back to you" and sk (ditditditdahditdah) which means "silent key", or "I'm ending the qso"
+
+
+good copy alice.  Alice is the name of the ham at the receiving station, n6qwx.  The transmitting station told Alice that her signals were quite easy to receive.  
+
+Note that the USA amateur calls all start with one of the following letters: a, k, n, and w.  There may or may not be a second letter, which can be any letter of the alphabet.  There is a single number which is where the person was living when they got their license.  After the number there are from one to three letters, any letter of the alphabet.  Most common is three, less common two, and very rare one.  Note that the ham that wrote the morse code program (G4FON) starts with G, and is easily identified as coming from Great Britain.
+
+rig is yaesu zk196	"rig" is the type and model number of the radio that the transmitting station is using.  In this case, the manufacturer of the radio is the Yaesu Radio Company, and the model number is zk196.  Obviously, this can be one of the ten questions asked.  Some exams use a "real" model number and some use a made up model number.  This series of QSO files use made up model numbers to be sure that the less used characters (z and k) are in the mix somewhere.  The rules say that EVERY letter and EVERY numeral and EVERY punctuation must be somewhere in the test message.
+
+
+and runs 775 watts	The power output of the transmitter in the rig.  Again, an obvious test question.
+
+
+to a yagi antenna up 42 feet.	The type and elevation of the antenna being used by the transmitting station.  Here are TWO good questions...what KIND of antenna and HOW HIGH?
+
+
+Weather is rainy and cold and my name is catherine.	Catherine is the name of the ham at the transmitting station, nj7yv/4.
+
+i live in charleston, south carolina	In some exams, this will be "charleston sc", using the standard post office abbrvtn for south carolina.  In general, cities will be real cities in the state.
+
+where your rst is 565.	RST is the universal amateur way of telling the other ham how their signal is being received.  The letters stand for Readability, Signal (or Strength), and Tone.  Readability is numbers from 1 through 5, where 1 is almost inaudible to 5 where I could copy with my left foot if I had to.  Signal is from 1 through 9 (which is generally given by the "S" meter on the receiver) where 1 is very weak and 9 is turning my radio into a lamp.  Tone is a number from 1 through 9, where 1 means your radio was tuned by a clodmeister von hamhand and 9 is as pure a tone as a computer can generate.  Giving anybody less than a 9 on the Tone is pretty nasty these days. 
+
+
+My age is 55 and I am a sales manager.		Again, obvious questions.  Some tests have provisions for marital status and number of children.  
+
+how copy?	Well, they had to figure out how to use the question mark somehow.
+
+n6qwx de nj7yv/4	Just a repeat of the receiving station and transmitting station.  You get a double shot at getting the calls correct.
+
+^sk	Another one of the prosigns.  Catherine is expecting the QSO to end after Alice does a final transmission.
+
+
+Questions?  jim@rstengineering.com
+
+73
+
+Jim
