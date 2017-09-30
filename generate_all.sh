@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Example: ./generate_all.sh "kmuresnaptlwi.jz=foy,vg5/q92h38b?47c1d60x+#" output
-# + -> ^AR, # -> ^KA
+# + -> ^AR, # -> ^KA, < -> ^ERROR
 #
 
 my_path="$(dirname "$0")"
