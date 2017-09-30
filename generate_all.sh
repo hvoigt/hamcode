@@ -14,11 +14,11 @@ fi
 characters="$1"
 outdir="$2"
 
-(cd $my_path &&
+(cd "$my_path" &&
  ./gencw_lettermix.sh "$characters" &&
  ./gencw_qsomix.sh "$characters" &&
  ./gencw_texts.sh "$characters"
 ) &&
-mkdir -p $outdir &&
-mv $my_path/*_*.txt $my_path/*_*.mp3 $outdir/ &&
-echo "$characters" >$outdir/0_Letters.txt
+mkdir -p "$outdir" &&
+mv "$my_path"/*_*.txt "$my_path"/*_*.mp3 "$outdir/" &&
+echo "$characters" >"$outdir/0_Letters.txt"
