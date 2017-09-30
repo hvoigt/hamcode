@@ -16,9 +16,13 @@ outdir="$2"
 
 (cd "$my_path" &&
  ./gencw_lettermix.sh "$characters" &&
+ mkdir -p 1_letter && mv *_*.txt *_*.mp3 1_letter/ &&
  ./gencw_qsomix.sh "$characters" &&
- ./gencw_texts.sh "$characters"
+ mkdir -p 2_qso && mv *_*.txt *_*.mp3 2_qso/ &&
+ ./gencw_texts.sh "$characters" &&
+ mkdir -p 3_text && mv *_*.txt *_*.mp3 3_text/
 ) &&
 mkdir -p "$outdir" &&
-mv "$my_path"/*_*.txt "$my_path"/*_*.mp3 "$outdir/" &&
+rm -rf "$outdir/1_letter" "$outdir/2_qso" "$outdir/3_text" &&
+mv "$my_path/1_letter" "$my_path/2_qso" "$my_path/3_text" "$outdir/" &&
 echo "$characters" >"$outdir/0_Letters.txt"
