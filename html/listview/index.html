@@ -55,6 +55,15 @@ function fillExcercises(response) {
 		list.innerHTML = html;
 }
 
+function showCharacters(response) {
+		var characterdiv = document.getElementById('characterdiv');
+		var charList = response;
+		charList = charList.replace("<", "&lt; &lt ERROR&gt;");
+		charList = charList.replace("+", "&lt; + AR&gt;");
+		charList = charList.replace("#", "&lt; # KA&gt;");
+		characterdiv.innerHTML = "<p>Zeichen: " + charList + "</p>";
+}
+
 function loadData() {
 		var client = new XMLHttpRequest();
 		client.open('GET', "../0_Exercises.txt");
@@ -66,6 +75,17 @@ function loadData() {
 				}
 		}
 		client.send();
+
+		var client2 = new XMLHttpRequest();
+		client2.open('GET', "../0_Letters.txt");
+		client2.onreadystatechange = function() {
+				if (client2.status == 200) {
+						showCharacters(client2.responseText);
+				} else {
+						document.getElementById('errordiv').innerHTML = client2.responseText;
+				}
+		}
+		client2.send();
 }
 </SCRIPT>
 
@@ -76,6 +96,8 @@ function loadData() {
         <h4 id="nametitle">CW Trainer - &Uuml;bungen</h4>
 
 <div id="errordiv"></div>
+
+<div id="characterdiv"></div>
 
 <div id="listdiv"></div>
 
