@@ -85,12 +85,17 @@ function startAudio() {
 				audio.src = name + ".mp3";
 				audio.play();
 				document.getElementById("start").value = "Stop";
+				isPlaying = true;
 		} else {
-				audio.pause();
-				audio.currentTime = 0
-				document.getElementById("start").value = "Start";
+				stopAudio();
 		}
-		isPlaying = !isPlaying;
+}
+
+function stopAudio() {
+		audio.pause();
+		audio.currentTime = 0
+		document.getElementById("start").value = "Start";
+		isPlaying = false;
 }
 
 function loadText(name) {
@@ -133,7 +138,8 @@ Your browser does not support the audio element.
 </p>
 <form action="#" onsubmit="return false">
 <p>
-<textarea id="text"></textarea>
+<textarea autocomplete="off" autocorrect="off" autocapitalize="off"
+ spellcheck="false" onblur="stopAudio()" id="text"></textarea>
 </p>
 <p>
 <input type="button" onClick="launch()" value="Ok">
