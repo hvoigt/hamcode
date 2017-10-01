@@ -98,6 +98,11 @@ function stopAudio() {
 		isPlaying = false;
 }
 
+function onLeaveText() {
+		stopAudio();
+		launch();
+}
+
 function loadText(name) {
 		/* get text */
 		var client = new XMLHttpRequest();
@@ -139,7 +144,7 @@ Your browser does not support the audio element.
 <form action="#" onsubmit="return false">
 <p>
 <textarea autocomplete="off" autocorrect="off" autocapitalize="off"
- spellcheck="false" onblur="stopAudio()" id="text"></textarea>
+ spellcheck="false" onblur="onLeaveText()" id="text"></textarea>
 </p>
 <p>
 <input type="button" onClick="launch()" value="Ok">
