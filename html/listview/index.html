@@ -33,11 +33,31 @@
 <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
 
 function fillExcercises(response) {
+		var list = document.getElementById('listdiv');
+		var lines = response.split('\n');
+		var html = "";
+		var haveUL = false;
+		for (var i = 0; i < lines.length; i++) {
+				var line = lines[i];
+				if (line.charAt(0) == '#') {
+						if (haveUL)
+								html += "</ul>";
+						html += "<h5>" + line.substr(1) + "</h5>\n";
+						html += "<ul>";
+						haveUL = true;
+				} else {
+						html += "<li>";
+						html += "<a href=\"../trainview/?name=../" + line + "\">"
+						html += line + "</a>";
+						html += "</li>";
+				}
+		}
+		list.innerHTML = html;
 }
 
 function loadData() {
 		var client = new XMLHttpRequest();
-		client.open('GET', "0_Exercises.txt");
+		client.open('GET', "../0_Exercises.txt");
 		client.onreadystatechange = function() {
 				if (client.status == 200) {
 						fillExcercises(client.responseText);
@@ -57,13 +77,7 @@ function loadData() {
 
 <div id="errordiv"></div>
 
-<h5>Letters</h5>
-<ul>
-<li><a href="">lettermix_00</a></li>
-<li><a href="">lettermix_00</a></li>
-<li><a href="">lettermix_00</a></li>
-<li><a href="">lettermix_00</a></li>
-</ul>
+<div id="listdiv"></div>
 
     </div>
   </div>

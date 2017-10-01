@@ -20,9 +20,17 @@ outdir="$2"
  ./gencw_qsomix.sh "$characters" &&
  mkdir -p 2_qso && mv *_*.txt *_*.mp3 2_qso/ &&
  ./gencw_texts.sh "$characters" &&
- mkdir -p 3_text && mv *_*.txt *_*.mp3 3_text/
+ mkdir -p 3_text && mv *_*.txt *_*.mp3 3_text/ &&
+ echo "#Letters" >0_Exercises.txt &&
+ find 1_letter -name "*.txt" | cut -f1 -d. >>0_Exercises.txt &&
+ echo "#QSOs" >>0_Exercises.txt &&
+ find 2_qso -name "*.txt" | cut -f1 -d. >>0_Exercises.txt &&
+ echo "#Texts" >>0_Exercises.txt &&
+ find 3_text -name "*.txt" | cut -f1 -d. >>0_Exercises.txt
 ) &&
 mkdir -p "$outdir" &&
 rm -rf "$outdir/1_letter" "$outdir/2_qso" "$outdir/3_text" &&
 mv "$my_path/1_letter" "$my_path/2_qso" "$my_path/3_text" "$outdir/" &&
-echo "$characters" >"$outdir/0_Letters.txt"
+echo "$characters" >"$outdir/0_Letters.txt" &&
+mv "$my_path/0_Exercises.txt" "$outdir/" &&
+cp -r "$my_path/html/listview" "$my_path/html/trainview" "$outdir/"
