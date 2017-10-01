@@ -33,4 +33,4 @@ rm -rf "$outdir/1_letter" "$outdir/2_qso" "$outdir/3_text" &&
 mv "$my_path/1_letter" "$my_path/2_qso" "$my_path/3_text" "$outdir/" &&
 echo "$characters" >"$outdir/0_Letters.txt" &&
 mv "$my_path/0_Exercises.txt" "$outdir/" &&
-cp -r "$my_path/html/listview" "$my_path/html/trainview" "$outdir/"
+cp -r "$my_path/html/" "$outdir/"

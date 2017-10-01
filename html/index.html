@@ -47,7 +47,7 @@ function fillExcercises(response) {
 						haveUL = true;
 				} else {
 						html += "<li>";
-						html += "<a href=\"../trainview/?name=../" + line + "\">"
+						html += "<a href=\"trainview.html?name=" + line + "\">"
 						html += line + "</a>";
 						html += "</li>";
 				}
@@ -66,7 +66,7 @@ function showCharacters(response) {
 
 function loadData() {
 		var client = new XMLHttpRequest();
-		client.open('GET', "../0_Exercises.txt");
+		client.open('GET', "0_Exercises.txt");
 		client.onreadystatechange = function() {
 				if (client.status == 200) {
 						fillExcercises(client.responseText);
@@ -77,7 +77,7 @@ function loadData() {
 		client.send();
 
 		var client2 = new XMLHttpRequest();
-		client2.open('GET', "../0_Letters.txt");
+		client2.open('GET', "0_Letters.txt");
 		client2.onreadystatechange = function() {
 				if (client2.status == 200) {
 						showCharacters(client2.responseText);
