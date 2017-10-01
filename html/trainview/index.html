@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>EMPTY</title>
+  <meta name="description" content="CW Trainer Page">
+  <meta name="author" content="Heiko Voigt">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/local.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="./diff_match_patch.js"></SCRIPT>
+</head>
+<body onload="loadData()">
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+var dmp = new diff_match_patch();
+var string = "empty";
+var name = "";
+
+function launch() {
+  var text1 = string;
+  var text2 = document.getElementById('text').value;
+  dmp.Diff_Timeout = 1;
+  dmp.Diff_EditCost = 4;
+
+  var d = dmp.diff_main(text1, text2);
+	dmp.diff_cleanupSemantic(true);
+	dmp.diff_cleanupEfficiency(false);
+
+  var ds = dmp.diff_prettyHtml(d);
+  document.getElementById('outputdiv').innerHTML = ds
+
+	var distance = dmp.diff_levenshtein(d);
+	var percent = 0.0;
+	if (text1.length > text2.length) {
+		percent = distance * 100 / text1.length;
+	} else {
+		percent = distance * 100 / text2.length;
+	}
+  percent = 100 - percent;
+  document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " + percent + "%</p>";
+}
+
+function getName() {
+		var url_string = document.URL
+		var url = new URL(url_string);
+		var c = url.searchParams.get("name");
+		if (c != null)
+				return c;
+		else
+				return "LEER";
+}
+
+function focusInput() {
+		var text = document.getElementById("text");
+		text.value = "";
+		text.focus();
+}
+
+var isPlaying = false;
+
+function startAudio() {
+		var audio = document.getElementById("audio");
+		if (!isPlaying) {
+				focusInput();
+				audio.src = name + ".mp3";
+				audio.play();
+				document.getElementById("start").value = "Stop";
+		} else {
+				audio.pause();
+				audio.currentTime = 0
+				document.getElementById("start").value = "Start";
+		}
+		isPlaying = !isPlaying;
+}
+
+function loadText(name) {
+		/* get text */
+		var client = new XMLHttpRequest();
+		client.open('GET', name + ".txt");
+		client.onreadystatechange = function() {
+				if (client.status == 200) {
+						string = client.responseText;
+				} else {
+						document.getElementById('errordiv').innerHTML = client.responseText;
+				}
+		}
+		client.send();
+}
+
+function loadData() {
+		name = getName();
+		loadText(name);
+		document.getElementById('nametitle').innerHTML = name;
+		document.title = "CW:" + name;
+}
+
+</SCRIPT>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+        <h4 id="nametitle">CW Trainer</h4>
+
+<p>
+<div id="errordiv"></div>
+<audio id="audio" controls="controls" onClick="focusInput()">
+Your browser does not support the audio element.
+</audio>
+</p>
+<p>
+<input id="start" type="button" onClick="startAudio()" value="Start">
+</p>
+<form action="#" onsubmit="return false">
+<p>
+<textarea id="text"></textarea>
+</p>
+<p>
+<input type="button" onClick="launch()" value="Ok">
+</p>
+</form>
+
+<p>
+<div id="outputdiv"></div>
+</p>
+
+<p>
+<div id="consolediv"></div>
+</p>
+
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
