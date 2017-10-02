@@ -38,6 +38,14 @@ var string = "empty";
 var name = "";
 var disableLeaveText = false;
 
+function scrollTo(anchor) {
+    /* Workaround for safari et. al: Setting hash twice to the same
+     * location only works once, because after the first time the
+     * anchor is already contained in the URL. */
+    location.hash = "#doesNotExist";
+    location.hash = anchor;
+}
+
 function showResults() {
   var text1 = string;
   var text2 = document.getElementById('text').value;
@@ -60,6 +68,7 @@ function showResults() {
 	}
   percent = 100 - percent;
   document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " + percent + "%</p>";
+  scrollTo("#result");
 }
 
 function clearResults() {
@@ -173,6 +182,7 @@ Your browser does not support the audio element.
 
 <p>
 <div id="outputdiv"></div>
+<a name="result">
 </p>
 
 <p>
