@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
         printf("%c", c);
         word_len++;
     }
+    printf("\n");
 
     return 0;
 }
