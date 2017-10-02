@@ -36,6 +36,7 @@
 var dmp = new diff_match_patch();
 var string = "empty";
 var name = "";
+var resultsShown = false;
 
 function scrollTo(anchor) {
     /* Workaround for safari et. al: Setting hash twice to the same
@@ -68,11 +69,22 @@ function showResults() {
   percent = 100 - percent;
   document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " + percent + "%</p>";
   scrollTo("#result");
+  resultsShown = true;
+  document.getElementById('ok').value = "Weiter";
+}
+
+function okButtonClicked() {
+    if (!resultsShown) {
+        showResults();
+    } else
+	window.location = ".";
 }
 
 function clearResults() {
     document.getElementById('consolediv').innerHTML = "";
     document.getElementById('outputdiv').innerHTML = "";
+    resultsShown = false;
+    document.getElementById('ok').value = "Ok";
 }
 
 function getName() {
@@ -172,7 +184,7 @@ Your browser does not support the audio element.
  spellcheck="false" onblur="onLeaveText()" id="text"></textarea>
 </p>
 <p>
-<input type="button" onClick="showResults()" value="Ok">
+<input id="ok" type="button" onClick="okButtonClicked()" value="Ok">
 </p>
 </form>
 
