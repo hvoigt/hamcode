@@ -185,6 +185,16 @@ function loadData() {
 		loadText(name);
 		document.getElementById('nametitle').innerHTML = name;
 		document.title = "CW:" + name;
+
+    var cookie_avg = getCookie("average_array");
+    if (cookie_avg === "") {
+        showNotice("<p>Wir benutzen Cookies um die Genauigkeit von " +
+            "vergangenen &Uuml;bungen zu speichern. Die Daten werden " +
+            "ausschlie&szlig;lig im Browser gespeichert und nicht an " +
+            "den Server &uuml;bertragen.</p><p>Durch Benutzung der " +
+            "&Uuml;bungsfunktion (Start Button) erkl&auml;ren Sie sich " +
+            "damit einverstanden!</p>");
+    }
 }
 
 function showNotice(notice) {
@@ -221,7 +231,7 @@ function getCookie(cname) {
     <div class="row">
         <h4 id="nametitle">CW Trainer</h4>
 
-<div id="errordiv"></div>
+<div id="errordiv" style="color:#cc0000;"></div>
 <audio id="audio" controls="controls" onClick="focusInput()">
 Your browser does not support the audio element.
 </audio>
