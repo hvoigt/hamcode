@@ -74,10 +74,12 @@ function showResults() {
 }
 
 function okButtonClicked() {
+    if ((time - lastStopAudioTime) < 300)
+        return;
     if (!resultsShown) {
         showResults();
     } else
-	window.location = ".";
+        window.location = ".";
 }
 
 function clearResults() {
