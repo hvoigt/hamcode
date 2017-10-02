@@ -36,7 +36,6 @@
 var dmp = new diff_match_patch();
 var string = "empty";
 var name = "";
-var disableLeaveText = false;
 
 function scrollTo(anchor) {
     /* Workaround for safari et. al: Setting hash twice to the same
@@ -116,8 +115,6 @@ function stopAudio() {
 }
 
 function onLeaveText() {
-		if (disableLeaveText)
-				return;
 		stopAudio();
 		showResults();
 }
@@ -143,14 +140,6 @@ function loadData() {
 		document.title = "CW:" + name;
 }
 
-function enterStartButton() {
-		disableLeaveText = true;
-}
-
-function leaveStartButton() {
-		disableLeaveText = false;
-}
-
 function showNotice(notice) {
 		document.getElementById('errordiv').innerHTML = notice;
 }
@@ -170,9 +159,7 @@ Your browser does not support the audio element.
 </audio>
 </p>
 <p>
-<input id="start" type="button" onClick="toggleAudio()"
- onMouseEnter="enterStartButton()" onMouseLeave="leaveStartButton()"
- value="Start">
+<input id="start" type="button" onClick="toggleAudio()" value="Start">
 </p>
 <form action="#" onsubmit="return false">
 <p>
