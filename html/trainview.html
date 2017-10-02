@@ -117,7 +117,7 @@ function toggleAudio() {
 						return;
 				focusInput();
         clearResults();
-				audio.src = name + ".mp3";
+				audio.src = name + ".mp3?_=" + new Date().getTime();
 				audio.play();
 				document.getElementById("start").value = "Stop";
 				isPlaying = true;
@@ -142,7 +142,7 @@ function onLeaveText() {
 function loadText(name) {
 		/* get text */
 		var client = new XMLHttpRequest();
-		client.open('GET', name + ".txt");
+		client.open('GET', name + ".txt?_=" + new Date().getTime());
 		client.onreadystatechange = function() {
 				if (client.status == 200) {
 						string = client.responseText;
