@@ -38,7 +38,7 @@ var string = "empty";
 var name = "";
 var disableLeaveText = false;
 
-function launch() {
+function showResults() {
   var text1 = string;
   var text2 = document.getElementById('text').value;
   dmp.Diff_Timeout = 1;
@@ -60,6 +60,11 @@ function launch() {
 	}
   percent = 100 - percent;
   document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " + percent + "%</p>";
+}
+
+function clearResults() {
+    document.getElementById('consolediv').innerHTML = "";
+    document.getElementById('outputdiv').innerHTML = "";
 }
 
 function getName() {
@@ -84,6 +89,7 @@ function toggleAudio() {
 		var audio = document.getElementById("audio");
 		if (!isPlaying) {
 				focusInput();
+        clearResults();
 				audio.src = name + ".mp3";
 				audio.play();
 				document.getElementById("start").value = "Stop";
@@ -104,7 +110,7 @@ function onLeaveText() {
 		if (disableLeaveText)
 				return;
 		stopAudio();
-		launch();
+		showResults();
 }
 
 function loadText(name) {
@@ -161,7 +167,7 @@ Your browser does not support the audio element.
  spellcheck="false" onblur="onLeaveText()" id="text"></textarea>
 </p>
 <p>
-<input type="button" onClick="launch()" value="Ok">
+<input type="button" onClick="showResults()" value="Ok">
 </p>
 </form>
 
