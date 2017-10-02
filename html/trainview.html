@@ -74,6 +74,7 @@ function showResults() {
 }
 
 function okButtonClicked() {
+    var time = (new Date()).getTime();
     if ((time - lastStopAudioTime) < 300)
         return;
     if (!resultsShown) {
