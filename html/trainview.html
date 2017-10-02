@@ -130,7 +130,7 @@ function loadText(name) {
 				if (client.status == 200) {
 						string = client.responseText;
 				} else {
-						document.getElementById('errordiv').innerHTML = client.responseText;
+						showNotice(client.responseText);
 				}
 		}
 		client.send();
@@ -149,6 +149,10 @@ function enterStartButton() {
 
 function leaveStartButton() {
 		disableLeaveText = false;
+}
+
+function showNotice(notice) {
+		document.getElementById('errordiv').innerHTML = notice;
 }
 
 </SCRIPT>
