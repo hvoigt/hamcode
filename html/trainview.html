@@ -47,8 +47,8 @@ function scrollTo(anchor) {
 }
 
 function showResults() {
-  var text1 = string;
-  var text2 = document.getElementById('text').value;
+  var text1 = string.trim();
+  var text2 = document.getElementById('text').value.trim();
   dmp.Diff_Timeout = 1;
   dmp.Diff_EditCost = 4;
 
