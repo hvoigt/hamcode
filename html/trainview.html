@@ -36,6 +36,7 @@
 var dmp = new diff_match_patch();
 var string = "empty";
 var name = "";
+var disableLeaveText = false;
 
 function launch() {
   var text1 = string;
@@ -100,6 +101,8 @@ function stopAudio() {
 }
 
 function onLeaveText() {
+		if (disableLeaveText)
+				return;
 		stopAudio();
 		launch();
 }
@@ -125,6 +128,14 @@ function loadData() {
 		document.title = "CW:" + name;
 }
 
+function enterStartButton() {
+		disableLeaveText = true;
+}
+
+function leaveStartButton() {
+		disableLeaveText = false;
+}
+
 </SCRIPT>
 
   <!-- Primary Page Layout
@@ -140,7 +151,9 @@ Your browser does not support the audio element.
 </audio>
 </p>
 <p>
-<input id="start" type="button" onClick="startAudio()" value="Start">
+<input id="start" type="button" onClick="startAudio()"
+ onMouseEnter="enterStartButton()" onMouseLeave="leaveStartButton()"
+ value="Start">
 </p>
 <form action="#" onsubmit="return false">
 <p>
