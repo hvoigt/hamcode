@@ -67,7 +67,34 @@ function showResults() {
 		percent = distance * 100 / text2.length;
 	}
   percent = 100 - percent;
-  document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " + percent + "%</p>";
+
+  var avg = [];
+  var cookie_avg = getCookie("average_array");
+  if (cookie_avg !== "")
+    avg = cookie_avg.split(',');
+
+  for (var i = 1; i < avg.length; i++)
+    avg[i - 1] = avg[i];
+
+  if (avg.length >= 10)
+      avg[avg.length - 1] = percent;
+  else
+      avg.push(percent);
+
+  setCookie("average_array", avg.join(','), 365);
+
+  var sum = 0.0;
+  for (var i = 0; i < avg.length; i++) {
+    var one = parseFloat(avg[i]);
+    if (one === NaN)
+        one = 0.0;
+    sum += one;
+    //console.log("avg[" + i + "] = " + avg[i]);
+  }
+  sum /= avg.length;
+
+  document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " +
+        percent.toFixed(2) + "% / " + sum.toFixed(2) + "% </p>";
   scrollTo("#result");
   resultsShown = true;
   document.getElementById('ok').value = "Weiter";
@@ -162,6 +189,28 @@ function loadData() {
 
 function showNotice(notice) {
 		document.getElementById('errordiv').innerHTML = notice;
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 
 </SCRIPT>
