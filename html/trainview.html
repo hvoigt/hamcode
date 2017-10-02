@@ -92,10 +92,14 @@ function focusInput() {
 }
 
 var isPlaying = false;
+var lastStopAudioTime = 0;
 
 function toggleAudio() {
 		var audio = document.getElementById("audio");
 		if (!isPlaying) {
+				var time = (new Date()).getTime();
+				if ((time - lastStopAudioTime) < 300)
+						return;
 				focusInput();
         clearResults();
 				audio.src = name + ".mp3";
@@ -108,6 +112,7 @@ function toggleAudio() {
 }
 
 function stopAudio() {
+		lastStopAudioTime = (new Date()).getTime();
 		audio.pause();
 		audio.currentTime = 0
 		document.getElementById("start").value = "Start";
