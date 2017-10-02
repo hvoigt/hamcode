@@ -80,7 +80,7 @@ function focusInput() {
 
 var isPlaying = false;
 
-function startAudio() {
+function toggleAudio() {
 		var audio = document.getElementById("audio");
 		if (!isPlaying) {
 				focusInput();
@@ -151,7 +151,7 @@ Your browser does not support the audio element.
 </audio>
 </p>
 <p>
-<input id="start" type="button" onClick="startAudio()"
+<input id="start" type="button" onClick="toggleAudio()"
  onMouseEnter="enterStartButton()" onMouseLeave="leaveStartButton()"
  value="Start">
 </p>
