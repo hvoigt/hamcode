@@ -140,9 +140,6 @@ var lastAutomaticResultTime = 0;
 function toggleAudio() {
 		var audio = document.getElementById("audio");
 		if (!isPlaying) {
-				var time = (new Date()).getTime();
-				if ((time - lastAutomaticResultTime) < 300)
-						return;
 				focusInput();
         clearResults();
 				audio.src = name + ".mp3?_=" + new Date().getTime();
