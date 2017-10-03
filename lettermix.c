@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
+#include <sys/time.h>
 
 const int text_len = 80;
 const int max_word_len = 7;
@@ -18,7 +18,14 @@ int main(int argc, char *argv[])
     }
     asprintf(&allowed_characters, " %s", argv[1]);
 
-    srand(clock());
+    struct timeval time;
+    if (gettimeofday(&time, NULL) != 0) {
+	perror("Could not get time: ");
+	exit(1);
+    }
+
+    int millis = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+    srand(millis);
     int word_len = 0;
     int n = strlen(allowed_characters);
     for (int i = 0; i < text_len; i++) {
