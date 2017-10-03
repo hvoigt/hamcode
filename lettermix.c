@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     }
     asprintf(&allowed_characters, " %s", argv[1]);
 
-    srand(time(NULL));
+    srand(clock());
     int word_len = 0;
     int n = strlen(allowed_characters);
     for (int i = 0; i < text_len; i++) {
