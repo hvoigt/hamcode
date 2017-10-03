@@ -103,7 +103,7 @@ function showResults() {
 
 function okButtonClicked() {
     var time = (new Date()).getTime();
-    if ((time - lastStopAudioTime) < 300)
+    if ((time - lastAutomaticResultTime) < 300)
         return;
     if (!resultsShown) {
         showResults();
@@ -135,13 +135,13 @@ function focusInput() {
 }
 
 var isPlaying = false;
-var lastStopAudioTime = 0;
+var lastAutomaticResultTime = 0;
 
 function toggleAudio() {
 		var audio = document.getElementById("audio");
 		if (!isPlaying) {
 				var time = (new Date()).getTime();
-				if ((time - lastStopAudioTime) < 300)
+				if ((time - lastAutomaticResultTime) < 300)
 						return;
 				focusInput();
         clearResults();
@@ -171,7 +171,7 @@ function stopAudio() {
 
 function onLeaveText() {
     if (hasAudioEnded) {
-        lastStopAudioTime = (new Date()).getTime();
+        lastAutomaticResultTime = (new Date()).getTime();
         showResults();
     }
 }
