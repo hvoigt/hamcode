@@ -167,7 +167,8 @@ function stopAudio() {
 }
 
 function onLeaveText() {
-    if (hasAudioEnded) {
+    var text = document.getElementById("text");
+    if (hasAudioEnded && text.value != "") {
         lastAutomaticResultTime = (new Date()).getTime();
         showResults();
     }
