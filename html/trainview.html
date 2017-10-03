@@ -37,6 +37,7 @@ var dmp = new diff_match_patch();
 var string = "empty";
 var name = "";
 var resultsShown = false;
+var hasAudioEnded = false;
 
 function scrollTo(anchor) {
     /* Workaround for safari et. al: Setting hash twice to the same
@@ -145,6 +146,10 @@ function toggleAudio() {
 				focusInput();
         clearResults();
 				audio.src = name + ".mp3?_=" + new Date().getTime();
+        audio.onended = function () {
+            hasAudioEnded = true;
+            resetAudio();
+        }
 				audio.play();
 				document.getElementById("start").value = "Stop";
 				isPlaying = true;
@@ -153,17 +158,22 @@ function toggleAudio() {
 		}
 }
 
-function stopAudio() {
-		lastStopAudioTime = (new Date()).getTime();
-		audio.pause();
+function resetAudio() {
 		audio.currentTime = 0
 		document.getElementById("start").value = "Start";
 		isPlaying = false;
 }
 
+function stopAudio() {
+    audio.pause();
+    resetAudio();
+}
+
 function onLeaveText() {
-		stopAudio();
-		showResults();
+    if (hasAudioEnded) {
+        lastStopAudioTime = (new Date()).getTime();
+        showResults();
+    }
 }
 
 function loadText(name) {
