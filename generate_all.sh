@@ -22,11 +22,11 @@ outdir="$2"
  ./gencw_texts.sh "$characters" &&
  mkdir -p 3_text && mv *_*.txt *_*.mp3 3_text/ &&
  echo "#Letters" >0_Exercises.txt &&
- find 1_letter -name "*.txt" | cut -f1 -d. >>0_Exercises.txt &&
+ find 1_letter -name "*.txt" | sort | cut -f1 -d. >>0_Exercises.txt &&
  echo "#QSOs" >>0_Exercises.txt &&
- find 2_qso -name "*.txt" | cut -f1 -d. >>0_Exercises.txt &&
+ find 2_qso -name "*.txt" | sort | cut -f1 -d. >>0_Exercises.txt &&
  echo "#Texts" >>0_Exercises.txt &&
- find 3_text -name "*.txt" | cut -f1 -d. >>0_Exercises.txt
+ find 3_text -name "*.txt" | sort | cut -f1 -d. >>0_Exercises.txt
 ) &&
 mkdir -p "$outdir" &&
 rm -rf "$outdir/1_letter" "$outdir/2_qso" "$outdir/3_text" &&
