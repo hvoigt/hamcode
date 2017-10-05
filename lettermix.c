@@ -6,7 +6,7 @@
 #include <string.h>
 #include <sys/time.h>
 
-const int text_len = 80;
+const int text_len = 72;
 const int max_word_len = 7;
 
 int main(int argc, char *argv[])
@@ -30,20 +30,21 @@ int main(int argc, char *argv[])
     int n = strlen(allowed_characters);
     for (int i = 0; i < text_len; i++) {
         int r;
-        if (word_len < 2)
+        if (word_len < 5)
             r = (rand() % (n - 1)) + 1;
         else
-            r = rand() % n;
+            /* add a space */
+            r = 0;
 
         char c = allowed_characters[r];
         if (word_len > max_word_len)
             c = ' ';
 
+        printf("%c", c);
         if (c == ' ')
             word_len = 0;
-
-        printf("%c", c);
-        word_len++;
+        else
+            word_len++;
     }
     printf("\n");
 
