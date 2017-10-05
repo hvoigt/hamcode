@@ -46,7 +46,6 @@ int main(int argc, char *argv[])
         else
             word_len++;
     }
-    printf("\n");
 
     return 0;
 }
