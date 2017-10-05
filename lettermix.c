@@ -6,7 +6,7 @@
 #include <string.h>
 #include <sys/time.h>
 
-const int text_len = 72;
+const int text_len = 71;
 const int max_word_len = 7;
 
 int main(int argc, char *argv[])
