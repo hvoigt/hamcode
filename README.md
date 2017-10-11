@@ -41,6 +41,28 @@ Here an example script I call every day using a cronjob:
 	"/var/www/cw.hvoigt.net/Lektion 2" >/dev/null
 ```
 
+Building
+--------
+
+You need to have the following prerequisites installed:
+
+ * perl
+ * gcc
+ * make
+ * git
+ * bash
+
+To clone and build the repository:
+
+```
+git clone https://github.com/hvoigt/hamcode.git
+cd hamcode
+git submodule update --init
+make
+```
+
+Now you should be able to execute the scripts as described above.
+
 [1]: https://fkurz.net/ham/ebook2cw.html
 [2]: http://www.netzmafia.de/software/wordlists/deutsch.txt
 [3]: http://cw.hvoigt.net
