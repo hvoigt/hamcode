@@ -18,6 +18,8 @@ so one can learn the typical patterns.
 Usage
 -----
 
+There is a [demo page][3] with the output.
+
 Here an example script I call every day using a cronjob:
 
 ```bash
@@ -32,3 +34,4 @@ Here an example script I call every day using a cronjob:
 
 [1]: https://fkurz.net/ham/ebook2cw.html
 [2]: http://www.netzmafia.de/software/wordlists/deutsch.txt
+[3]: http://cw.hvoigt.net
