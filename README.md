@@ -15,5 +15,20 @@ helpful if you yet only know a limited amount of characters.
 My plans are to extend this so this can generate real QSO like texts
 so one can learn the typical patterns.
 
+Usage
+-----
+
+Here an example script I call every day using a cronjob:
+
+```bash
+#!/bin/bash
+# Example: ./generate_all.sh "kmuresnaptlwi.jz=foy,vg5/q92h38b?47c1d60x+#" output
+# + -> ^AR, # -> ^KA, < -> ^ERROR
+/home/hvoigt/hamcode/generate_all.sh 'elv0' \
+	"/var/www/cw.hvoigt.net/Lektion 1" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh 'elv0aqs' \
+	"/var/www/cw.hvoigt.net/Lektion 2" >/dev/null
+```
+
 [1]: https://fkurz.net/ham/ebook2cw.html
 [2]: http://www.netzmafia.de/software/wordlists/deutsch.txt
