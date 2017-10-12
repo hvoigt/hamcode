@@ -49,6 +49,27 @@ function scrollTo(anchor) {
     location.hash = anchor;
 }
 
+String.prototype.hashCode = function() {
+    var hash = 0, i, chr;
+    if (this.length === 0) return hash;
+    for (i = 0; i < this.length; i++) {
+        chr   = this.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+};
+
+function hasString(txt_hashes, str) {
+    var hash = str.hashCode();
+    for (var i = 0; i < txt_hashes.length; i++) {
+        if (parseInt(txt_hashes[i]) === hash)
+            return true;
+    }
+
+    return false;
+}
+
 function showResults() {
   var text1 = string.trim();
   if (text1.startsWith("vvv# "))
@@ -78,15 +99,32 @@ function showResults() {
   if (cookie_avg !== "")
     avg = cookie_avg.split(',');
 
-  for (var i = 1; i < avg.length; i++)
-    avg[i - 1] = avg[i];
+  var txt_hashes = [];
+  var cookie_texts = getCookie("texts_array");
+  if (cookie_texts !== "")
+      txt_hashes = cookie_texts.split(',');
 
-  if (avg.length >= 10)
-      avg[avg.length - 1] = percent;
-  else
-      avg.push(percent);
+  if (!hasString(txt_hashes, text1)) {
+      for (var i = 1; i < avg.length; i++)
+          avg[i - 1] = avg[i];
 
-  setCookie("average_array", avg.join(','), 365);
+      if (avg.length >= 10)
+          avg[avg.length - 1] = percent;
+      else
+          avg.push(percent);
+
+      setCookie("average_array", avg.join(','), 365);
+
+      for (var i = 1; i < txt_hashes.length; i++)
+          txt_hashes[i - 1] = txt_hashes[i];
+
+      if (txt_hashes.length >= 10)
+          txt_hashes[txt_hashes.length - 1] = text1.hashCode();
+      else
+          txt_hashes.push(text1.hashCode());
+
+      setCookie("texts_array", txt_hashes.join(','), 365);
+  }
 
   var sum = 0.0;
   for (var i = 0; i < avg.length; i++) {
