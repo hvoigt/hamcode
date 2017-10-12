@@ -17,6 +17,7 @@
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <script src="https://use.fontawesome.com/cfb968fdf6.js"></script>
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -142,12 +143,21 @@ var lastAutomaticResultTime = 0;
 function toggleAudio() {
 		var audio = document.getElementById("audio");
 		if (!isPlaying) {
+        document.getElementById("spinner").style.visibility = 'visible';
 				focusInput();
         clearResults();
 				audio.src = name + ".mp3?_=" + new Date().getTime();
         audio.onended = function () {
             hasAudioEnded = true;
             resetAudio();
+        }
+        audio.onwaiting = function () {
+            document.getElementById("playing").style.visibility = 'hidden';
+            document.getElementById("spinner").style.visibility = 'visible';
+        }
+        audio.onplaying = function() {
+            document.getElementById("spinner").style.visibility = 'hidden';
+            document.getElementById("playing").style.visibility = 'visible';
         }
 				audio.play();
 				document.getElementById("start").value = "Stop";
@@ -161,6 +171,8 @@ function resetAudio() {
 		audio.currentTime = 0
 		document.getElementById("start").value = "Start";
 		isPlaying = false;
+    document.getElementById("playing").style.visibility = 'hidden';
+    document.getElementById("spinner").style.visibility = 'hidden';
 }
 
 function stopAudio() {
@@ -195,6 +207,8 @@ function loadData() {
 		loadText(name);
 		document.getElementById('nametitle').innerHTML = name;
 		document.title = "CW:" + name;
+
+    resetAudio();
 
     var cookie_avg = getCookie("average_array");
     if (cookie_avg === "") {
@@ -247,6 +261,9 @@ Your browser does not support the audio element.
 </audio>
 <p>
 <input id="start" type="button" onClick="toggleAudio()" value="Start">
+&nbsp;&nbsp;&nbsp;
+<i id="spinner" class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+<i id="playing" class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
 </p>
 <form action="#" onsubmit="return false">
 <p>
