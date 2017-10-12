@@ -1,5 +1,12 @@
+/* vim: set shiftwidth=4 tabstop=2 expandtab: */
+
 textarea {
     left:10%;
     width:80%;
 		height: 150px;
+}
+
+.cwtext {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: large
 }
