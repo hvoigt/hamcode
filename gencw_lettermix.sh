@@ -23,12 +23,17 @@ do_mix() {
 	-o lettermix_${i} -t "DH3IKO CW Lettermix $i"
 }
 
-for i in 00 01 02 03 04 05 06 07 08 09 10
+for i in 00 01 02 03 04 05 06 07 08 09
 do
     do_mix $i "-e 8 -w 12"
 done
 
-for i in 10 11 12 13 14 15 16 17 18 19 20
+for i in 10 11 12 13 14 15 16 17 18 19
 do
     do_mix $i "-e 10 -w 12"
+done
+
+for i in 20 21 22 23 24 25 26 27 28 29
+do
+    do_mix $i "-e 12 -w 12"
 done
