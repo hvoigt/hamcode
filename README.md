@@ -53,6 +53,7 @@ You need to have the following prerequisites installed:
  * make
  * git
  * bash
+ * libmp3lame, libvorbis, libvorbisenc, libogg
 
 To clone and build the repository:
 
