@@ -75,6 +75,7 @@ function showResults() {
   if (text1.startsWith("vvv# "))
     text1 = text1.substr(5);
   var text2 = document.getElementById('text').value.trim();
+  text2 = text2.toLowerCase();
   dmp.Diff_Timeout = 1;
   dmp.Diff_EditCost = 4;
 
