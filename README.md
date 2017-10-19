@@ -39,6 +39,8 @@ Here an example script I call every day using a cronjob:
 	"/var/www/cw.hvoigt.net/Lektion 1" >/dev/null
 /home/hvoigt/hamcode/generate_all.sh 'elv0aqs' \
 	"/var/www/cw.hvoigt.net/Lektion 2" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh 'elv0aqst2' \
+	"/var/www/cw.hvoigt.net/Lektion 3" >/dev/null
 ```
 
 Building
@@ -51,6 +53,7 @@ You need to have the following prerequisites installed:
  * make
  * git
  * bash
+ * libmp3lame, libvorbis, libvorbisenc, libogg
 
 To clone and build the repository:
 
