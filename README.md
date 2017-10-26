@@ -55,6 +55,12 @@ You need to have the following prerequisites installed:
  * bash
  * libmp3lame, libvorbis, libvorbisenc, libogg
 
+On Ubuntu 16.04 the line for installing the needed libs is:
+
+```
+sudo apt-get install -y build-essential git libmp3lame-dev libvorbis-dev
+```
+
 To clone and build the repository:
 
 ```
