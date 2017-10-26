@@ -28,6 +28,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="./util.js"></SCRIPT>
 </head>
 <body onload="loadData()">
 
@@ -62,7 +63,12 @@ function showCharacters(response) {
 		charList = charList.replace("<", "&lt; &lt ERROR&gt;");
 		charList = charList.replace("+", "&lt; + AR&gt;");
 		charList = charList.replace("#", "&lt; # KA&gt;");
-		characterdiv.innerHTML = "<p>Zeichen: " + charList + "</p>";
+
+    var average_array = loadNumberArray("average_array");
+    var average = averageNumberArray(average_array);
+
+    characterdiv.innerHTML = "<p>Zeichen: " + charList + "</p>" +
+        "<p>Aktueller Durchschnitt Genauigkeit: " + average.toFixed(2) + "% </p>";
 }
 
 function loadData() {
