@@ -31,6 +31,7 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
 
 <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="./diff_match_patch.js"></SCRIPT>
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="./util.js"></SCRIPT>
 </head>
 <body onload="loadData()">
 
@@ -47,27 +48,6 @@ function scrollTo(anchor) {
      * anchor is already contained in the URL. */
     location.hash = "#doesNotExist";
     location.hash = anchor;
-}
-
-String.prototype.hashCode = function() {
-    var hash = 0, i, chr;
-    if (this.length === 0) return hash;
-    for (i = 0; i < this.length; i++) {
-        chr   = this.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0; // Convert to 32bit integer
-    }
-    return hash;
-};
-
-function hasString(txt_hashes, str) {
-    var hash = str.hashCode();
-    for (var i = 0; i < txt_hashes.length; i++) {
-        if (parseInt(txt_hashes[i]) === hash)
-            return true;
-    }
-
-    return false;
 }
 
 function showResults() {
@@ -95,47 +75,18 @@ function showResults() {
 	}
   percent = 100 - percent;
 
-  var avg = [];
-  var cookie_avg = getCookie("average_array");
-  if (cookie_avg !== "")
-    avg = cookie_avg.split(',');
-
-  var txt_hashes = [];
-  var cookie_texts = getCookie("texts_array");
-  if (cookie_texts !== "")
-      txt_hashes = cookie_texts.split(',');
+  var avg = loadNumberArray("average_array");
+  var txt_hashes = loadNumberArray("texts_array");
 
   if (!hasString(txt_hashes, text1)) {
-      for (var i = 1; i < avg.length; i++)
-          avg[i - 1] = avg[i];
+      avg = pushOrShiftArray(avg, percent);
+      saveNumberArray(avg, "average_array");
 
-      if (avg.length >= 10)
-          avg[avg.length - 1] = percent;
-      else
-          avg.push(percent);
-
-      setCookie("average_array", avg.join(','), 365);
-
-      for (var i = 1; i < txt_hashes.length; i++)
-          txt_hashes[i - 1] = txt_hashes[i];
-
-      if (txt_hashes.length >= 10)
-          txt_hashes[txt_hashes.length - 1] = text1.hashCode();
-      else
-          txt_hashes.push(text1.hashCode());
-
-      setCookie("texts_array", txt_hashes.join(','), 365);
+      txt_hashes = pushOrShiftArray(txt_hashes, text1.hashCode());
+      saveNumberArray(txt_hashes, "texts_array");
   }
 
-  var sum = 0.0;
-  for (var i = 0; i < avg.length; i++) {
-    var one = parseFloat(avg[i]);
-    if (one === NaN)
-        one = 0.0;
-    sum += one;
-    //console.log("avg[" + i + "] = " + avg[i]);
-  }
-  sum /= avg.length;
+  var sum = averageNumberArray(avg);
 
   document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " +
         percent.toFixed(2) + "% / " + sum.toFixed(2) + "% </p>";
@@ -272,28 +223,6 @@ function loadData() {
 
 function showNotice(notice) {
 		document.getElementById('errordiv').innerHTML = notice;
-}
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
 }
 
 </SCRIPT>
