@@ -1,6 +1,8 @@
 cwwords_*.txt
 cwwords_*.mp3
 /lettermix
+/.vagrant/
+/ubuntu-xenial-16.04-cloudimg-console.log
 *.swp
 *_*.txt
 *_*.mp3
