@@ -43,6 +43,8 @@ Here an example script I call every day using a cronjob:
 	"/var/www/cw.hvoigt.net/Lektion 3" >/dev/null
 /home/hvoigt/hamcode/generate_all.sh 'elv0aqst2co' \
 	"/var/www/cw.hvoigt.net/Lektion 4" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -f -e 'elv0aqst2co' \
+	"/var/www/cw.hvoigt.net/Lektion 5" >/dev/null
 ```
 
 Building
