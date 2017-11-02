@@ -35,13 +35,13 @@ Here an example script I call every day using a cronjob:
 #!/bin/bash
 # Example: ./generate_all.sh "kmuresnaptlwi.jz=foy,vg5/q92h38b?47c1d60x+#" output
 # + -> ^AR, # -> ^KA, < -> ^ERROR
-/home/hvoigt/hamcode/generate_all.sh 'elv0' \
+/home/hvoigt/hamcode/generate_all.sh -i 4 'elv0' \
 	"/var/www/cw.hvoigt.net/Lektion 1" >/dev/null
-/home/hvoigt/hamcode/generate_all.sh 'elv0aqs' \
+/home/hvoigt/hamcode/generate_all.sh -i 3 'elv0aqs' \
 	"/var/www/cw.hvoigt.net/Lektion 2" >/dev/null
-/home/hvoigt/hamcode/generate_all.sh 'elv0aqst2' \
+/home/hvoigt/hamcode/generate_all.sh -i 2 'elv0aqst2' \
 	"/var/www/cw.hvoigt.net/Lektion 3" >/dev/null
-/home/hvoigt/hamcode/generate_all.sh 'elv0aqst2co' \
+/home/hvoigt/hamcode/generate_all.sh -i 2 'elv0aqst2co' \
 	"/var/www/cw.hvoigt.net/Lektion 4" >/dev/null
 /home/hvoigt/hamcode/generate_all.sh -f -e 'elv0aqst2co' \
 	"/var/www/cw.hvoigt.net/Lektion 5" >/dev/null

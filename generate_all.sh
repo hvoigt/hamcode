@@ -26,6 +26,14 @@ do
         fi
         shift
         ;;
+    -i)
+        if [ "$lettermix_options" ]; then
+            lettermix_options="$lettermix_options -i $2"
+        else
+            lettermix_options="-i $2"
+        fi
+        shift 2
+        ;;
     *)
         break
     esac

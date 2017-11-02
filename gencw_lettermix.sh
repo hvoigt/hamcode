@@ -2,6 +2,7 @@
 
 lettermix_options=
 fast_lettermix=
+intro_letters=0
 while test $# -gt 1
 do
     case "$1" in
@@ -12,6 +13,10 @@ do
     -f)
         fast_lettermix=t
         shift
+        ;;
+    -i)
+        intro_letters=$2
+        shift 2
         ;;
     *)
         break
@@ -46,6 +51,29 @@ for i in 00 01 02 03 04 05 06 07 08 09
 do
     do_mix $i "-e 8 -w 12"
 done
+
+if [ $intro_letters -gt 0 ];then
+    i=00
+    intro=${characters: -$intro_letters}
+    out=lettermix_$i.txt
+    options="-e 8 -w 12"
+
+    printf "vvv# " >$out
+    for r in $(seq 0 2)
+    do
+        for l in $(seq 0 $[$intro_letters-1])
+        do
+            for x in $(seq 1 5)
+            do
+                printf ${intro:$l:1} >>$out
+            done
+                printf " " >>$out
+        done
+    done
+    echo "+" >> $out
+    cat $out | ./ebook2cw/ebook2cw -p $options -f 800 \
+	-o lettermix_${i} -t "DH3IKO CW Lettermix $i"
+fi
 
 for i in 10 11 12 13 14 15 16 17 18 19
 do
