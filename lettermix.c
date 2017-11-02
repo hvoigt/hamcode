@@ -6,17 +6,37 @@
 #include <string.h>
 #include <sys/time.h>
 
-const int text_len = 71;
+int text_len = 71;
 const int max_word_len = 7;
+int min_word_len = 5;
+int random_wordlen = 0;
 
 int main(int argc, char *argv[])
 {
     char *allowed_characters;
-    if (argc != 2) {
-	fprintf(stderr, "Usage: %s <characters>", argv[0]);
+
+    /* jump over programname */
+    const char *exe_name = argv[0];
+    argv++;
+    argc--;
+
+    while (argc > 1) {
+        if (strcmp("-e", *argv) == 0) {
+            text_len = 80;
+            min_word_len = 2;
+            random_wordlen = 1;
+        } else {
+            break;
+        }
+        argc--;
+        argv++;
+    }
+
+    if (argc != 1) {
+	fprintf(stderr, "Usage: %s [-e] <characters>", exe_name);
 	exit(1);
     }
-    asprintf(&allowed_characters, " %s", argv[1]);
+    asprintf(&allowed_characters, " %s", argv[0]);
 
     struct timeval time;
     if (gettimeofday(&time, NULL) != 0) {
@@ -30,11 +50,14 @@ int main(int argc, char *argv[])
     int n = strlen(allowed_characters);
     for (int i = 0; i < text_len; i++) {
         int r;
-        if (word_len < 5)
+        if (word_len < min_word_len) /* no space in random selection */
             r = (rand() % (n - 1)) + 1;
-        else
-            /* add a space */
-            r = 0;
+        else {
+            if (random_wordlen)
+                r = rand() % n;
+            else /* add a space */
+                r = 0;
+        }
 
         char c = allowed_characters[r];
         if (word_len > max_word_len)

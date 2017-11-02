@@ -1,7 +1,25 @@
 #!/bin/bash
 
+lettermix_options=
+fast_lettermix=
+while test $# -gt 1
+do
+    case "$1" in
+    -e)
+        lettermix_options="-e"
+        shift
+        ;;
+    -f)
+        fast_lettermix=t
+        shift
+        ;;
+    *)
+        break
+    esac
+done
+
 if [ $# -ne 1 ]; then
-    echo "Usage: $0 <characters>"
+    echo "Usage: $0 [-e] [-f] <characters>"
     exit 1
 fi
 
@@ -15,9 +33,10 @@ fi
 do_mix() {
     i=$1
     options="$2"
+    do_mix_lettermix_options="$3"
     out=lettermix_$i.txt
     printf "vvv# " >$out
-    ./lettermix "$characters" >>$out
+    ./lettermix $do_mix_lettermix_options "$characters" >>$out
     echo " +" >> $out
     cat $out | ./ebook2cw/ebook2cw -p $options -f 800 \
 	-o lettermix_${i} -t "DH3IKO CW Lettermix $i"
@@ -30,10 +49,17 @@ done
 
 for i in 10 11 12 13 14 15 16 17 18 19
 do
-    do_mix $i "-e 10 -w 12"
+    do_mix $i "-e 10 -w 12" $lettermix_options
 done
 
 for i in 20 21 22 23 24 25 26 27 28 29
 do
-    do_mix $i "-e 12 -w 12"
+    do_mix $i "-e 12 -w 12" $lettermix_options
 done
+
+if [ "$fast_lettermix" ]; then
+    for i in 30 31 33 33 34 35 36 37 38 39
+    do
+        do_mix $i "-e 16 -w 16" $lettermix_options
+    done
+fi

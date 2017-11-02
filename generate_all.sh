@@ -6,6 +6,31 @@
 
 my_path="$(dirname "$0")"
 
+lettermix_options=
+while test $# -gt 2
+do
+    case "$1" in
+    -e)
+        if [ "$lettermix_options" ]; then
+            lettermix_options="$lettermix_options -e"
+        else
+            lettermix_options="-e"
+        fi
+        shift
+        ;;
+    -f)
+        if [ "$lettermix_options" ]; then
+            lettermix_options="$lettermix_options -f"
+        else
+            lettermix_options="-f"
+        fi
+        shift
+        ;;
+    *)
+        break
+    esac
+done
+
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <characters> <outdir>"
     exit 1
@@ -15,7 +40,7 @@ characters="$1"
 outdir="$2"
 
 (cd "$my_path" &&
- ./gencw_lettermix.sh "$characters" &&
+ ./gencw_lettermix.sh $lettermix_options "$characters" &&
  mkdir -p 1_letter && mv *_*.txt *_*.mp3 1_letter/ &&
 # ./gencw_qsomix.sh "$characters" &&
 # mkdir -p 2_qso && mv *_*.txt *_*.mp3 2_qso/ &&
