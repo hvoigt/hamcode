@@ -11,6 +11,38 @@ const int max_word_len = 7;
 int min_word_len = 5;
 int random_wordlen = 0;
 
+static int my_rand()
+{
+    enum {
+        USE_RAND,
+        USE_DEV_RANDOM,
+        RAND_UNDEFINED,
+    } rand_method = RAND_UNDEFINED;
+
+    static FILE *file;
+    int number;
+
+    if (rand_method == RAND_UNDEFINED) {
+       file = fopen("/dev/urandom", "r");
+       if (file == NULL)
+           rand_method = USE_RAND;
+       else
+           rand_method = USE_DEV_RANDOM;
+    }
+
+    switch (rand_method) {
+    case USE_DEV_RANDOM:
+        fread(&number, sizeof(int), 1, file);
+        number = number < 0 ? -number : number;
+        number = number % RAND_MAX;
+        break;
+    default:
+        number = rand();
+    }
+
+    return number;
+}
+
 int main(int argc, char *argv[])
 {
     char *allowed_characters;
@@ -51,10 +83,10 @@ int main(int argc, char *argv[])
     for (int i = 0; i < text_len; i++) {
         int r;
         if (word_len < min_word_len) /* no space in random selection */
-            r = (rand() % (n - 1)) + 1;
+            r = (my_rand() % (n - 1)) + 1;
         else {
             if (random_wordlen)
-                r = rand() % n;
+                r = my_rand() % n;
             else /* add a space */
                 r = 0;
         }
