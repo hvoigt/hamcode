@@ -49,6 +49,8 @@ Here an example script I call every day using a cronjob:
 	"/var/www/cw.hvoigt.net/Lektion 6" >/dev/null
 /home/hvoigt/hamcode/generate_all.sh -i 3 'elv0aqst2cod5/ir9' \
 	"/var/www/cw.hvoigt.net/Lektion 7" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -i 2 -q -t 'elv0aqst2cod5/ir9gx' \
+	"/var/www/cw.hvoigt.net/Lektion 8" >/dev/null
 ```
 
 Building
