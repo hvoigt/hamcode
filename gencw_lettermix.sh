@@ -49,7 +49,7 @@ do_mix() {
 
 for i in 00 01 02 03 04 05 06 07 08 09
 do
-    do_mix $i "-e 8 -w 12"
+    do_mix $i "-e 7 -w 15 -W 0.3"
 done
 
 if [ $intro_letters -gt 0 ];then
@@ -77,12 +77,12 @@ fi
 
 for i in 10 11 12 13 14 15 16 17 18 19
 do
-    do_mix $i "-e 10 -w 12" $lettermix_options
+    do_mix $i "-e 10 -w 16 -W 0.2" $lettermix_options
 done
 
 for i in 20 21 22 23 24 25 26 27 28 29
 do
-    do_mix $i "-e 12 -w 12" $lettermix_options
+    do_mix $i "-e 14 -w 16 -W 0.1" $lettermix_options
 done
 
 if [ "$fast_lettermix" ]; then
