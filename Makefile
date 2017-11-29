@@ -3,7 +3,7 @@ CFLAGS=-std=c99
 
 all: lettermix ebook2cw
 
-lettermix: lettermix.c
+lettermix: lettermix.c data_buffer.c
 
 ebook2cw:
 	$(MAKE) -C ebook2cw

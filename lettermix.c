@@ -6,6 +6,8 @@
 #include <string.h>
 #include <sys/time.h>
 
+#include "data_buffer.h"
+
 int text_len = 71;
 const int max_word_len = 7;
 int min_word_len = 5;
@@ -45,7 +47,7 @@ static int my_rand()
 
 int main(int argc, char *argv[])
 {
-    char *allowed_characters;
+    struct data_buffer allowed_characters = DATA_BUFFER_INIT;
 
     /* jump over programname */
     const char *exe_name = argv[0];
@@ -68,7 +70,7 @@ int main(int argc, char *argv[])
 	fprintf(stderr, "Usage: %s [-e] <characters>", exe_name);
 	exit(1);
     }
-    asprintf(&allowed_characters, " %s", argv[0]);
+    data_buffer_printf(&allowed_characters, " %s", argv[0]);
 
     struct timeval time;
     if (gettimeofday(&time, NULL) != 0) {
@@ -79,7 +81,7 @@ int main(int argc, char *argv[])
     int millis = (time.tv_sec * 1000) + (time.tv_usec / 1000);
     srand(millis);
     int word_len = 0;
-    int n = strlen(allowed_characters);
+    int n = allowed_characters.data_len;
     for (int i = 0; i < text_len; i++) {
         int r;
         if (word_len < min_word_len) /* no space in random selection */
@@ -91,7 +93,7 @@ int main(int argc, char *argv[])
                 r = 0;
         }
 
-        char c = allowed_characters[r];
+        char c = allowed_characters.data[r];
         if (word_len > max_word_len)
             c = ' ';
 
