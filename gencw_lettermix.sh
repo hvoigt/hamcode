@@ -56,7 +56,7 @@ if [ $intro_letters -gt 0 ];then
     i=00
     intro=${characters: -$intro_letters}
     out=lettermix_$i.txt
-    options="-e 8 -w 12"
+    options="-e 7 -w 15 -W 0.3"
 
     printf "vvv# " >$out
     for r in $(seq 0 2)
