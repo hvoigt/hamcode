@@ -70,7 +70,21 @@ int main(int argc, char *argv[])
 	fprintf(stderr, "Usage: %s [-e] <characters>", exe_name);
 	exit(1);
     }
-    data_buffer_printf(&allowed_characters, " %s", argv[0]);
+    const char *characters = argv[0];
+
+    data_buffer_printf(&allowed_characters, " ");
+    for (int i = 0; characters[i] != '\0'; i++) {
+        for (int j=0; j < (i+2)/2; j++) {
+            char data[] = { characters[i] };
+            data_buffer_append(&allowed_characters, data, sizeof(data));
+        }
+    }
+
+#if 0
+    /* for debugging purposes */
+    allowed_characters.data[allowed_characters.data_len] = '\0';
+    printf("String: '%s'\n", allowed_characters.data);
+#endif
 
     struct timeval time;
     if (gettimeofday(&time, NULL) != 0) {
