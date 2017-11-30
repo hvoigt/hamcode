@@ -59,7 +59,7 @@ function showResults() {
   dmp.Diff_Timeout = 1;
   dmp.Diff_EditCost = 4;
 
-  var d = dmp.diff_main(text1, text2);
+  var d = dmp.diff_main(text2, text1);
 	dmp.diff_cleanupSemantic(true);
 	dmp.diff_cleanupEfficiency(false);
 
