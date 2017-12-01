@@ -41,7 +41,7 @@ do_mix() {
     do_mix_lettermix_options="$3"
     out=lettermix_$i.txt
     printf "vvv# " >$out
-    ./lettermix $do_mix_lettermix_options "$characters" >>$out
+    ./lettermix $do_mix_lettermix_options -b 3 "$characters" >>$out
     echo " +" >> $out
     cat $out | ./ebook2cw/ebook2cw -p $options -f 800 \
 	-o lettermix_${i} -t "DH3IKO CW Lettermix $i"

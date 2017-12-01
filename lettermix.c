@@ -12,6 +12,7 @@ int text_len = 71;
 const int max_word_len = 7;
 int min_word_len = 5;
 int random_wordlen = 0;
+int probability_bias = 1;
 
 static int my_rand()
 {
@@ -59,6 +60,19 @@ int main(int argc, char *argv[])
             text_len = 80;
             min_word_len = 2;
             random_wordlen = 1;
+        } else if (strcmp("-b", *argv) == 0) {
+            if (argc > 1) {
+                probability_bias = atoi(argv[1]);
+                if (probability_bias <= 0) {
+                    fprintf(stderr, "probability bias (-b option) needs to be positive\n");
+                    exit(1);
+                }
+                argc--;
+                argv++;
+            } else {
+                fprintf(stderr, "probability bias (-b option) needs a number\n");
+                exit(1);
+            }
         } else {
             break;
         }
@@ -71,10 +85,11 @@ int main(int argc, char *argv[])
 	exit(1);
     }
     const char *characters = argv[0];
+    int n_chars = strlen(characters);
 
     data_buffer_printf(&allowed_characters, " ");
     for (int i = 0; characters[i] != '\0'; i++) {
-        for (int j=0; j < (i+2)/2; j++) {
+        for (int j=0; j < i*probability_bias/n_chars + 1; j++) {
             char data[] = { characters[i] };
             data_buffer_append(&allowed_characters, data, sizeof(data));
         }
