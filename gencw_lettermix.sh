@@ -41,7 +41,7 @@ do_mix() {
     do_mix_lettermix_options="$3"
     out=lettermix_$i.txt
     printf "vvv# " >$out
-    ./lettermix $do_mix_lettermix_options -b 3 "$characters" >>$out
+    ./lettermix $do_mix_lettermix_options "$characters" >>$out
     echo " +" >> $out
     cat $out | ./ebook2cw/ebook2cw -p $options -f 800 \
 	-o lettermix_${i} -t "DH3IKO CW Lettermix $i"
@@ -49,7 +49,7 @@ do_mix() {
 
 for i in 00 01 02 03 04 05 06 07 08 09
 do
-    do_mix $i "-e 7 -w 15 -W 0.3"
+    do_mix $i "-e 7 -w 15 -W 0.3" "-b 3"
 done
 
 if [ $intro_letters -gt 0 ];then
@@ -77,16 +77,21 @@ fi
 
 for i in 10 11 12 13 14 15 16 17 18 19
 do
-    do_mix $i "-e 10 -w 16 -W 0.2" $lettermix_options
+    do_mix $i "-e 7 -w 15 -W 0.3"
 done
 
 for i in 20 21 22 23 24 25 26 27 28 29
+do
+    do_mix $i "-e 10 -w 16 -W 0.2" $lettermix_options
+done
+
+for i in 30 31 33 33 34 35 36 37 38 39
 do
     do_mix $i "-e 14 -w 16 -W 0.1" $lettermix_options
 done
 
 if [ "$fast_lettermix" ]; then
-    for i in 30 31 33 33 34 35 36 37 38 39
+    for i in 40 41 44 44 44 45 46 47 48 49
     do
         do_mix $i "-e 16 -w 16" $lettermix_options
     done
