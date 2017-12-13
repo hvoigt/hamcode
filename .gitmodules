@@ -1,3 +1,6 @@
 [submodule "ebook2cw"]
 	path = ebook2cw
 	url = ../ebook2cw.git
+[submodule "responsive_apache_directory_listing"]
+	path = responsive_apache_directory_listing
+	url = ../responsive_apache_directory_listing.git
