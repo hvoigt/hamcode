@@ -41,6 +41,7 @@ var string = "empty";
 var name = "";
 var resultsShown = false;
 var hasAudioEnded = false;
+var winAudio;
 
 function scrollTo(anchor) {
     /* Workaround for safari et. al: Setting hash twice to the same
@@ -93,6 +94,9 @@ function showResults() {
   scrollTo("#result");
   resultsShown = true;
   document.getElementById('ok').value = "Weiter";
+
+  if (Math.abs(100.0 - percent) < 0.01)
+      winAudio.play();
 }
 
 function okButtonClicked() {
@@ -219,6 +223,8 @@ function loadData() {
             "&Uuml;bungsfunktion (Start Button) erkl&auml;ren Sie sich " +
             "damit einverstanden!</p>");
     }
+
+    winAudio = new Audio('media/win.mp3');
 }
 
 function showNotice(notice) {
@@ -257,6 +263,11 @@ Your browser does not support the audio element.
 <div id="outputdiv" class="cwtext"></div>
 
 <div id="consolediv"></div>
+
+<div id="credits">
+<p>Sound effects obtained from <a href="https://www.zapsplat.com">
+https://www.zapsplat.com</a></p>
+</div
 
     </div>
   </div>
