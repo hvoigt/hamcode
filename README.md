@@ -59,6 +59,16 @@ Here an example script I call every day using a cronjob:
 	"/var/www/cw.hvoigt.net/Lektion 11" >/dev/null
 /home/hvoigt/hamcode/generate_all.sh -i 2 -q -t 'elv0aqst2cod5/ir9gxf4nu7h,' \
 	"/var/www/cw.hvoigt.net/Lektion 12" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -i 5 -q -t 'el0aqt2cod/ir9gxf,n7uv4sh5' \
+	"/var/www/cw.hvoigt.net/Lektion 12-sh5v4 Bootcamp" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -i 2 -q -t 'el0aqt2cod/ir9gxf,n7uv4sh5=.' \
+	"/var/www/cw.hvoigt.net/Lektion 13" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -q -t 'uv4ish5' \
+	"/var/www/cw.hvoigt.net/Lektion 13-uv4ish5" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -i 2 -q -t 'el0aqt2cod/ir9gxf,n7uv4sh5=.bk' \
+	"/var/www/cw.hvoigt.net/Lektion 14" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -i 2 -q -t 'el0aqt2cod/ir9gxf,n7uv4sh5=.bkp3' \
+	"/var/www/cw.hvoigt.net/Lektion 15" >/dev/null
 ```
 
 Building
