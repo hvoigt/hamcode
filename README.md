@@ -71,6 +71,8 @@ Here an example script I call every day using a cronjob:
 	"/var/www/cw.hvoigt.net/Lektion 15" >/dev/null
 /home/hvoigt/hamcode/generate_all.sh -i 2 -q -t 'el0aqt2cod/ir9gxf,n7uv4sh5=.bkp3my' \
 	"/var/www/cw.hvoigt.net/Lektion 16" >/dev/null
+/home/hvoigt/hamcode/generate_all.sh -i 3 -q -t 'el0aqt2cod/ir9gxf,n7uv4sh5=.bkp3myjwz' \
+	"/var/www/cw.hvoigt.net/Lektion 17" >/dev/null
 ```
 
 Building
