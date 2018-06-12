@@ -39,6 +39,7 @@
 var dmp = new diff_match_patch();
 var string = "empty";
 var name = "";
+var nextName = "";
 var resultsShown = false;
 var hasAudioEnded = false;
 var winAudio;
@@ -114,8 +115,12 @@ function okButtonClicked() {
     }
     if (!resultsShown) {
         showResults();
-    } else
-        window.location = ".";
+    } else {
+        if (nextName == "")
+            window.location = ".";
+        else
+            window.location = "trainview.html?name=" + nextName;
+    }
 }
 
 function clearResults() {
@@ -206,9 +211,24 @@ function loadText(name) {
 		client.send();
 }
 
+function loadNext(exercises) {
+    for (var i = 0; i < exercises.length; i++) {
+        var one = exercises[i];
+        if (one.charAt(0) == '#')
+            continue;
+        if (one == name && (i + 1) < exercises.length) {
+            var next = exercises[i + 1];
+            if (next.charAt(0) == '#')
+                return;
+            nextName = next;
+        }
+    }
+}
+
 function loadData() {
 		name = getName();
 		loadText(name);
+    loadExercises(loadNext);
 		document.getElementById('nametitle').innerHTML = name;
 		document.title = "DH3IKO CW Trainer: " + name;
 
