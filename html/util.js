@@ -80,3 +80,18 @@ function averageNumberArray(array) {
     sum /= array.length;
     return sum;
 }
+
+function loadExercises(responseAction) {
+    var client = new XMLHttpRequest();
+    client.open('GET', "0_Exercises.txt");
+    client.onreadystatechange = function() {
+        if (client.readyState != client.DONE)
+            return;
+        if (client.status == 200) {
+            responseAction(client.responseText.split('\n'));
+        } else {
+            document.getElementById('errordiv').innerHTML = client.responseText;
+        }
+    }
+    client.send();
+}

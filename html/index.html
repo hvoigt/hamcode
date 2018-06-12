@@ -32,7 +32,7 @@
 
 function fillExcercises(response) {
 		var list = document.getElementById('listdiv');
-		var lines = response.split('\n');
+		var lines = response;
 		var html = "";
 		var haveUL = false;
 		for (var i = 0; i < lines.length; i++) {
@@ -68,16 +68,7 @@ function showCharacters(response) {
 }
 
 function loadData() {
-		var client = new XMLHttpRequest();
-		client.open('GET', "0_Exercises.txt");
-		client.onreadystatechange = function() {
-				if (client.status == 200) {
-						fillExcercises(client.responseText);
-				} else {
-						document.getElementById('errordiv').innerHTML = client.responseText;
-				}
-		}
-		client.send();
+    loadExercises(fillExcercises);
 
 		var client2 = new XMLHttpRequest();
 		client2.open('GET', "0_Letters.txt");
