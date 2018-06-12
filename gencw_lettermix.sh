@@ -43,7 +43,7 @@ do_mix() {
     printf "vvv# " >$out
     ./lettermix $do_mix_lettermix_options "$characters" >>$out
     echo " +" >> $out
-    cat $out | ./ebook2cw/ebook2cw -p $options -f 800 \
+    cat $out | ./ebook2cw/ebook2cw -u -p $options -f 800 \
 	-o lettermix_${i} -t "DH3IKO CW Lettermix $i"
 }
 
@@ -71,7 +71,7 @@ if [ $intro_letters -gt 0 ];then
         done
     done
     echo "+" >> $out
-    cat $out | ./ebook2cw/ebook2cw -p $options -f 800 \
+    cat $out | ./ebook2cw/ebook2cw -u -p $options -f 800 \
 	-o lettermix_${i} -t "DH3IKO CW Lettermix $i"
 fi
 

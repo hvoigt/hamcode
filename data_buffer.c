@@ -76,3 +76,71 @@ int data_buffer_printf(struct data_buffer *buffer, const char
 
 	return written;
 }
+
+static int skip_chars(const char *str, int i, int count)
+{
+    do {
+        i++;
+        count--;
+        if (str[i] == '\0')
+            return i;
+    } while (count > 0);
+
+    return i;
+}
+
+int data_buffer_char_utf8(struct data_buffer *buffer, int pos,
+        struct data_buffer *c)
+{
+    char b;
+    int len = 0;
+
+    c->data = buffer->data;
+    c->data_len = buffer->data_len;
+    c->alloc_len = 0;
+
+    for (int i = 0; (b = buffer->data[i]) != '\0' &&
+            i < buffer->data_len; i++)
+    {
+        if (len == pos) {
+            c->data_len = utf8_charsize(b);
+            c->data = buffer->data+i;
+            return c->data_len;
+        }
+
+        int size = utf8_charsize(b);
+        if (size > 1)
+            i = skip_chars(buffer->data, i, size - 1);
+
+        len++;
+    }
+
+    return 0;
+}
+
+int utf8_strlen(const char *str)
+{
+    char c;
+    int len = 0;
+    for (int i = 0; (c = str[i]) != '\0'; i++) {
+        int size = utf8_charsize(c);
+        if (size > 1)
+            i = skip_chars(str, i, size - 1);
+
+        len++;
+    }
+
+    return len;
+}
+
+int utf8_charsize(unsigned char c)
+{
+    if ((c & 0xE0) == 0xC0)
+        return 2;
+    else if ((c & 0xF0) == 0xE0)
+        return 3;
+    else if ((c & 0xF8) == 0xF0)
+        return 4;
+
+    return 1;
+}

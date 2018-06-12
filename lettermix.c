@@ -84,14 +84,20 @@ int main(int argc, char *argv[])
 	fprintf(stderr, "Usage: %s [-e] <characters>", exe_name);
 	exit(1);
     }
-    const char *characters = argv[0];
-    int n_chars = strlen(characters);
+
+    struct data_buffer characters;
+    characters.data = argv[0];
+    characters.data_len = strlen(argv[0]);
+    characters.alloc_len = 0;
 
     data_buffer_printf(&allowed_characters, " ");
-    for (int i = 0; characters[i] != '\0'; i++) {
+
+    int n_chars = utf8_strlen(characters.data);
+    for (int i = 0; i < n_chars; i++) {
+        struct data_buffer c;
         for (int j=0; j < i*probability_bias/n_chars + 1; j++) {
-            char data[] = { characters[i] };
-            data_buffer_append(&allowed_characters, data, sizeof(data));
+            int len = data_buffer_char_utf8(&characters, i, &c);
+            data_buffer_append(&allowed_characters, c.data, len);
         }
     }
 
@@ -110,7 +116,7 @@ int main(int argc, char *argv[])
     int millis = (time.tv_sec * 1000) + (time.tv_usec / 1000);
     srand(millis);
     int word_len = 0;
-    int n = allowed_characters.data_len;
+    int n = utf8_strlen(allowed_characters.data);
     for (int i = 0; i < text_len; i++) {
         int r;
         if (word_len < min_word_len) /* no space in random selection */
@@ -122,12 +128,15 @@ int main(int argc, char *argv[])
                 r = 0;
         }
 
-        char c = allowed_characters.data[r];
-        if (word_len > max_word_len)
-            c = ' ';
+        struct data_buffer c, space = { " ", 1, 0 };
+        data_buffer_char_utf8(&allowed_characters, r, &c);
 
-        printf("%c", c);
-        if (c == ' ')
+        if (word_len > max_word_len)
+            c = space;
+
+        printf("%.*s", (int) c.data_len, c.data);
+
+        if (*c.data == ' ')
             word_len = 0;
         else
             word_len++;
