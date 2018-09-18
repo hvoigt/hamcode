@@ -92,7 +92,7 @@ outdir="$2"
  fi
 ) &&
 mkdir -p "$outdir" &&
-rm -rf "$outdir/1_letter" "$outdir/2_qso" "$outdir/3_text" &&
+rm -rf "$outdir/1_letter" "$outdir/2_qso" "$outdir/3_text" "$outdir/4_news" &&
 mv "$my_path/1_letter" "$outdir/" &&
 if [ "$generate_qsomix" ]; then
     mv "$my_path/2_qso" "$outdir/"
