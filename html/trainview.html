@@ -104,8 +104,9 @@ function showResults() {
   percent = 100 - percent;
 
   var avg = loadNumberArray("average_array");
+  var newText = addRevealedText(text1)
 
-  if (addRevealedText(text1)) {
+  if (newText) {
       avg = pushOrShiftArray(avg, percent);
       saveNumberArray(avg, "average_array");
   }
@@ -116,7 +117,7 @@ function showResults() {
         percent.toFixed(2) + "% / " + sum.toFixed(2) + "% </p>";
   finishShowResults();
 
-  if (Math.abs(100.0 - percent) < 0.01)
+  if (newText && (Math.abs(100.0 - percent) < 0.01))
       winAudio.play();
 }
 
