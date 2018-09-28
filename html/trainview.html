@@ -74,6 +74,12 @@ function getText() {
   return text1;
 }
 
+function finishShowResults() {
+    scrollTo("#result");
+    resultsShown = true;
+    document.getElementById('ok').value = "Weiter";
+}
+
 function showResults() {
   var text1 = getText();
   var text2 = document.getElementById('text').value.trim();
@@ -108,9 +114,7 @@ function showResults() {
 
   document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " +
         percent.toFixed(2) + "% / " + sum.toFixed(2) + "% </p>";
-  scrollTo("#result");
-  resultsShown = true;
-  document.getElementById('ok').value = "Weiter";
+  finishShowResults();
 
   if (Math.abs(100.0 - percent) < 0.01)
       winAudio.play();
