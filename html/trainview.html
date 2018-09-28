@@ -125,15 +125,15 @@ function okButtonClicked() {
     if ((time - lastAutomaticResultTime) < 300)
         return;
     var text = document.getElementById('text').value.trim();
-    if (text === "") {
-        document.getElementById('consolediv').innerHTML = "<p>Willst " +
-            "du nicht erstmal etwas in das Textfeld eingeben?</p>";
-        setTimeout(function () {
-            document.getElementById('consolediv').innerHTML = "";
-        }, 5000);
-        return;
-    }
     if (!resultsShown) {
+        if (text === "") {
+            var reference_text = getText();
+            document.getElementById('outputdiv').innerHTML = "<p>" +
+                reference_text + "</p>";
+            addRevealedText(reference_text);
+            finishShowResults();
+            return;
+        }
         showResults();
     } else {
         if (nextName == "")
