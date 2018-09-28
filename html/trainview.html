@@ -70,6 +70,7 @@ function getText() {
   var text_ref = text1;
   if (text1.startsWith("vvv# "))
     text1 = text1.substr(5);
+  text1 = text1.toLowerCase();
   return text1;
 }
 
