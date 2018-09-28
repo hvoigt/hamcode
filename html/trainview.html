@@ -52,10 +52,29 @@ function scrollTo(anchor) {
     location.hash = anchor;
 }
 
-function showResults() {
+/* checks if the text hash is in the array and adds it if not
+   returns the result of the check */
+function addRevealedText(text) {
+    var txt_hashes = loadNumberArray("texts_array");
+    if (hasString(txt_hashes, text))
+        return false;
+
+    txt_hashes = pushOrShiftArray(txt_hashes, text.hashCode());
+    saveNumberArray(txt_hashes, "texts_array");
+
+    return true;
+}
+
+function getText() {
   var text1 = string.trim();
+  var text_ref = text1;
   if (text1.startsWith("vvv# "))
     text1 = text1.substr(5);
+  return text1;
+}
+
+function showResults() {
+  var text1 = getText();
   var text2 = document.getElementById('text').value.trim();
   text2 = text2.toLowerCase();
   dmp.Diff_Timeout = 1;
@@ -78,14 +97,10 @@ function showResults() {
   percent = 100 - percent;
 
   var avg = loadNumberArray("average_array");
-  var txt_hashes = loadNumberArray("texts_array");
 
-  if (!hasString(txt_hashes, text1)) {
+  if (addRevealedText(text1)) {
       avg = pushOrShiftArray(avg, percent);
       saveNumberArray(avg, "average_array");
-
-      txt_hashes = pushOrShiftArray(txt_hashes, text1.hashCode());
-      saveNumberArray(txt_hashes, "texts_array");
   }
 
   var sum = averageNumberArray(avg);
