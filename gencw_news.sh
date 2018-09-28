@@ -9,7 +9,7 @@ do
         suffix="0$i"
     fi
     echo "$title" >cwnews_${suffix}.txt
-    echo "$title" | ./ebook2cw/ebook2cw -u -p -w 15 -e 7 -W 2 -f 800 \
+    echo "$title" | ./ebook2cw/ebook2cw -u -p -w 16 -e 12 -W 2 -f 800 \
 	    -o cwnews_${suffix} -t "DH3IKO CW BBC World News $i"
     i=$[$i+1]
 done
