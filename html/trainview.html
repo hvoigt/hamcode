@@ -52,10 +52,36 @@ function scrollTo(anchor) {
     location.hash = anchor;
 }
 
-function showResults() {
+/* checks if the text hash is in the array and adds it if not
+   returns the result of the check */
+function addRevealedText(text) {
+    var txt_hashes = loadNumberArray("texts_array");
+    if (hasString(txt_hashes, text))
+        return false;
+
+    txt_hashes = pushOrShiftArray(txt_hashes, text.hashCode());
+    saveNumberArray(txt_hashes, "texts_array");
+
+    return true;
+}
+
+function getText() {
   var text1 = string.trim();
+  var text_ref = text1;
   if (text1.startsWith("vvv# "))
     text1 = text1.substr(5);
+  text1 = text1.toLowerCase();
+  return text1;
+}
+
+function finishShowResults() {
+    scrollTo("#result");
+    resultsShown = true;
+    document.getElementById('ok').value = "Weiter";
+}
+
+function showResults() {
+  var text1 = getText();
   var text2 = document.getElementById('text').value.trim();
   text2 = text2.toLowerCase();
   dmp.Diff_Timeout = 1;
@@ -78,25 +104,20 @@ function showResults() {
   percent = 100 - percent;
 
   var avg = loadNumberArray("average_array");
-  var txt_hashes = loadNumberArray("texts_array");
+  var newText = addRevealedText(text1)
 
-  if (!hasString(txt_hashes, text1)) {
+  if (newText) {
       avg = pushOrShiftArray(avg, percent);
       saveNumberArray(avg, "average_array");
-
-      txt_hashes = pushOrShiftArray(txt_hashes, text1.hashCode());
-      saveNumberArray(txt_hashes, "texts_array");
   }
 
   var sum = averageNumberArray(avg);
 
   document.getElementById('consolediv').innerHTML = "<p>Genauigkeit: " +
         percent.toFixed(2) + "% / " + sum.toFixed(2) + "% </p>";
-  scrollTo("#result");
-  resultsShown = true;
-  document.getElementById('ok').value = "Weiter";
+  finishShowResults();
 
-  if (Math.abs(100.0 - percent) < 0.01)
+  if (newText && (Math.abs(100.0 - percent) < 0.01))
       winAudio.play();
 }
 
@@ -105,15 +126,15 @@ function okButtonClicked() {
     if ((time - lastAutomaticResultTime) < 300)
         return;
     var text = document.getElementById('text').value.trim();
-    if (text === "") {
-        document.getElementById('consolediv').innerHTML = "<p>Willst " +
-            "du nicht erstmal etwas in das Textfeld eingeben?</p>";
-        setTimeout(function () {
-            document.getElementById('consolediv').innerHTML = "";
-        }, 5000);
-        return;
-    }
     if (!resultsShown) {
+        if (text === "") {
+            var reference_text = getText();
+            document.getElementById('outputdiv').innerHTML = "<p>" +
+                reference_text + "</p>";
+            addRevealedText(reference_text);
+            finishShowResults();
+            return;
+        }
         showResults();
     } else {
         if (nextName == "")
