@@ -49,14 +49,14 @@ do_mix() {
 
 for i in 00 01 02 03 04 05 06 07 08 09
 do
-    do_mix $i "-e 7 -w 15 -W 0.3" "-b 3"
+    do_mix $i "-e 6 -w 14 -W 0.3" "-b 3"
 done
 
 if [ $intro_letters -gt 0 ];then
     i=00
     intro=${characters: -$intro_letters}
     out=lettermix_$i.txt
-    options="-e 7 -w 15 -W 0.3"
+    options="-e 6 -w 14 -W 0.3"
 
     printf "vvv# " >$out
     for r in $(seq 0 2)
